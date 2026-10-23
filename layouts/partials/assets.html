@@ -6,3 +6,10 @@
 {{ $appPath := printf "js/%s.js" (substr (crypto.SHA256 $app.Content) 0 12) }}
 {{ $appURL := resources.Copy $appPath $app }}
 <script defer src="{{ $appURL.RelPermalink }}" integrity="{{ $app.Data.Integrity }}"></script>
+
+<!-- Privacy-friendly analytics by Plausible -->
+{{ $plausible := resources.Get "js/plausible.js" | minify | fingerprint }}
+{{ $plausiblePath := printf "js/%s.js" (substr (crypto.SHA256 $plausible.Content) 0 12) }}
+{{ $plausibleURL := resources.Copy $plausiblePath $plausible }}
+<script src="{{ $plausibleURL.RelPermalink }}" integrity="{{ $plausible.Data.Integrity }}"></script>
+<script async src="https://plausible.io/js/pa-vchMm1LC-7q3qCYwStoIf.js"></script>
