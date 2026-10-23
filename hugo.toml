@@ -1,0 +1,21 @@
+baseURL = 'https://mg.ncag.info/'
+locale = 'en-us'
+title = 'Mathematics Genealogy — static mirror'
+disableKinds = ['taxonomy', 'term', 'RSS', 'sitemap']
+enableRobotsTXT = true
+timeout = '600s'
+
+[params]
+description = 'Static mirror of the Mathematics Genealogy Project: 338,532 records, with advisors, students, and dissertations.'
+recordLimit = 0
+
+[outputs]
+home = ['HTML']
+page = ['HTML']
+section = ['HTML']
+
+[build]
+noJSConfigInAssets = true
+
+[markup.goldmark.renderer]
+unsafe = false

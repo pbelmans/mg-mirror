@@ -1,0 +1,8 @@
+{{ $style := resources.Get "css/site.css" | minify | fingerprint }}
+{{ $stylePath := printf "css/%s.css" (substr (crypto.SHA256 $style.Content) 0 12) }}
+{{ $styleURL := resources.Copy $stylePath $style }}
+<link rel="stylesheet" href="{{ $styleURL.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+{{ $app := resources.Get "js/site.js" | minify | fingerprint }}
+{{ $appPath := printf "js/%s.js" (substr (crypto.SHA256 $app.Content) 0 12) }}
+{{ $appURL := resources.Copy $appPath $app }}
+<script defer src="{{ $appURL.RelPermalink }}" integrity="{{ $app.Data.Integrity }}"></script>

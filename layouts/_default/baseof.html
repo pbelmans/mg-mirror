@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ if ne .Type "person" }}<meta name="description" content="{{ .Site.Params.description }}">{{ end }}
+  <meta name="theme-color" content="#587b51">
+  <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
+  {{ partialCached "assets.html" . }}
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+</head>
+<body data-base="{{ "" | relURL }}" data-snapshot="{{ hugo.Data.mirror.commit }}" {{ if eq .Type "person" }}data-person="{{ .Params.mgp_id }}"{{ end }}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav id="menu" aria-label="Main navigation">
+    <div class="top-inner">
+      <div class="top-links">
+        <a href="{{ "" | relURL }}" {{ if or .IsHome (eq .RelPermalink ("search/" | relURL)) }}aria-current="page"{{ end }}>search</a>
+        {{ range slice (dict "path" "browse/#institutions" "title" "institutions") (dict "path" "browse/#subjects" "title" "subjects") (dict "path" "statistics/" "title" "statistics") (dict "path" "about/" "title" "about") }}
+        <a href="{{ .path | relURL }}" {{ if eq $.RelPermalink (.path | relURL) }}aria-current="page"{{ end }}>{{ .title }}</a>
+        {{ end }}
+        <button class="random-record text-button" type="button">random</button>
+      </div>
+      <a class="original-link" href="https://www.mathgenealogy.org/">original project</a>
+    </div>
+  </nav>
+  <header id="title">
+    <a class="site-name" href="{{ "" | relURL }}"><span>M</span>athematics <span>G</span>enealogy</a>
+    <p><strong>Static mirror</strong> of the <a href="https://www.mathgenealogy.org/">Mathematics Genealogy Project</a></p>
+  </header>
+  <div class="site-layout">
+    <main id="main" tabindex="-1">{{ block "main" . }}{{ end }}</main>
+  </div>
+</body>
+</html>

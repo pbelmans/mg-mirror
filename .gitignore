@@ -1,0 +1,9 @@
+/.cache/
+/data/records.json
+/data/mirror.json
+/static/data/
+/public/
+/resources/
+/.hugo_build.lock
+/.DS_Store
+/scripts/__pycache__/

@@ -1,0 +1,41 @@
+<h1 class="visually-hidden">Search mathematicians</h1>
+<form id="search-form" role="search">
+  <div class="search-line">
+    <label for="query">Name or MGP ID</label>
+    <input type="search" id="query" name="q" title="Matches all entered words; ignores accents.">
+    <button type="submit">Search</button>
+  </div>
+  <details id="search-filters">
+    <summary>Filters</summary>
+    <div class="filter-row">
+      <label for="school">Institution</label>
+      <input id="school" name="school" list="school-options" autocomplete="off">
+      <datalist id="school-options"></datalist>
+    </div>
+    <div class="filter-row">
+      <label for="country">Country</label>
+      <select id="country" name="country"><option value="">All</option></select>
+    </div>
+    <div class="filter-row">
+      <label for="subject">Subject</label>
+      <select id="subject" name="subject"><option value="">All</option></select>
+    </div>
+    <div class="filter-row">
+      <label for="from">Year</label>
+      <div class="year-range">
+        <input id="from" name="from" type="number" min="1" max="9999" aria-label="Year from">
+        <label for="to">to</label>
+        <input id="to" name="to" type="number" min="1" max="9999" aria-label="Year to">
+      </div>
+    </div>
+    <button id="reset-search" type="button">Reset</button>
+  </details>
+</form>
+<div class="results-heading">
+  <p id="search-status" role="status" aria-live="polite">{{ hugo.Data.mirror.count | lang.FormatNumber 0 }} records.</p>
+  <label class="sort-label">Sort <select id="result-order" name="sort"><option value="name">Name</option><option value="year-desc">Year, descending</option><option value="year-asc">Year, ascending</option><option value="students">Number of students</option></select></label>
+</div>
+<progress id="search-progress" max="16" value="0" hidden aria-label="Loading records"></progress>
+<div id="search-results" aria-busy="false"></div>
+<nav id="pagination" class="pagination" aria-label="Search result pages"></nav>
+<noscript><p>Search requires JavaScript. <a href="{{ "browse/" | relURL }}">Browse institutions and subjects</a>, or open a record: <a href="{{ "people/6967/" | relURL }}">Emmy Noether</a>, <a href="{{ "people/18231/" | relURL }}">Gauß</a>.</p></noscript>

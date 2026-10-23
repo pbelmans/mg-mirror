@@ -1,0 +1,14 @@
+{{ define "main" }}
+<h1>About</h1><div class="prose">
+<p>This is a static mirror of {{ hugo.Data.mirror.count | lang.FormatNumber 0 }} records from the <a href="https://www.mathgenealogy.org/">Mathematics Genealogy Project</a>. It does not receive updates from MGP.</p>
+<p>MGP is hosted by North Dakota State University in association with the American Mathematical Society. This mirror is independent of both.</p>
+<section id="data"><h2>Data</h2>
+<p>The dataset comes from <a href="{{ hugo.Data.mirror.repository }}">Erdos-Projects/summer26-math-genealogy</a>, by Jonathan Cohen, Osanda Illeperuma, Aaroodd Ujjayini Ramachandran, and Yilong Zhang.</p>
+<dl class="provenance"><div><dt>Source file</dt><dd><a href="{{ hugo.Data.mirror.source }}">data/processed/data-new.json</a></dd></div><div><dt>Revision</dt><dd><a class="identifier" href="{{ hugo.Data.mirror.repository }}/commit/{{ hugo.Data.mirror.commit }}">{{ substr hugo.Data.mirror.commit 0 12 }}</a></dd></div><div><dt>Mirror prepared</dt><dd>{{ hugo.Data.mirror.prepared }}; original scrape date unknown.</dd></div></dl>
+<p>This is the cleaned dataset, including two records missing from the original scrape and corrections to advisor–student relationships. MGP identifiers and field values are preserved. Predicted subject classifications are not used.</p></section>
+<section><h2>Missing data</h2>
+<p>Historical and geographical coverage is incomplete. A missing field means it was not recorded in the snapshot. Years and subject classifications may contain errors.</p>
+<div class="table-wrap"><table class="record-table"><thead><tr><th scope="col">Field</th><th scope="col" class="numeric">Records without a value</th></tr></thead><tbody>{{ range $key := slice "name" "year" "school" "country" "thesis" "subject" }}<tr><td>{{ $key | humanize }}</td><td class="numeric">{{ index hugo.Data.mirror.missing $key | lang.FormatNumber 0 }}</td></tr>{{ end }}</tbody></table></div></section>
+<section id="corrections"><h2>Corrections</h2><p>Submit additions and corrections to the <a href="https://www.mathgenealogy.org/">original project</a>. You can also <a href="https://northdakotastate-ndus.nbsstore.net/mathematics-genealogy-project-donation">support MGP</a>.</p></section>
+</div>
+{{ end }}

@@ -1,0 +1,7 @@
+{{- $limit := int (default 0 .Site.Params.recordLimit) -}}
+{{- $featured := slice "6967" "18231" "7298" "31245" "8014" "91093" -}}
+{{- range $id, $record := hugo.Data.records -}}
+  {{- if or (eq $limit 0) (le (int $id) $limit) (in $featured $id) -}}
+    {{- $.AddPage (dict "path" $id "title" (default "Name not recorded" $record.name) "type" "person" "params" (dict "mgp_id" $id)) -}}
+  {{- end -}}
+{{- end -}}

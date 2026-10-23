@@ -1,0 +1,147 @@
+/* Reference tables and forms, following Fanography. */
+:root {
+  --green: #5c7f56;
+  --olive: #cacb8e;
+  --link: #0659ac;
+  --line: #ddd;
+  --muted: #666;
+}
+* { box-sizing: border-box; }
+body { margin: 0; color: #212529; background: #fff; font: 15px/1.5 Arial, Helvetica, sans-serif; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button, input, select { font: inherit; }
+button, summary { cursor: pointer; }
+button:disabled { cursor: default; opacity: .6; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+h1 { margin: 0 0 14px; font-size: 24px; font-weight: normal; line-height: 1.3; }
+h2 { margin: 18px 0 10px; font-size: 19px; font-weight: normal; }
+h3 { margin: 12px 0 7px; font-size: 15px; }
+p { margin: 0 0 10px; }
+section { margin-bottom: 22px; }
+input, select { min-height: 28px; max-width: 100%; padding: 2px 5px; }
+button { padding: 2px 8px; }
+label { display: block; margin-bottom: 4px; font-size: 13px; }
+.numeric { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.identifier { font: 13px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.muted, .figure-caption { color: var(--muted); font-size: 13px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; top: -60px; left: 10px; padding: 8px; background: #fff; z-index: 5; }
+.skip-link:focus { top: 4px; }
+#menu { background: var(--green); font-size: 13px; }
+.top-inner { position: relative; max-width: 1280px; margin: auto; padding: 0 12px; }
+.top-links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0 20px; }
+.top-links a, .top-links button { display: block; padding: 7px 0; border: 0; background: none; color: #e3ecd9; font-size: 13px; }
+.top-links a[aria-current=page] { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.original-link { position: absolute; right: 12px; top: 7px; color: #e3ecd9; }
+#title { padding: 5px 10px 7px; border-bottom: 2px solid var(--olive); background: #eee; text-align: center; }
+.site-name { color: #222; font: 38px/1.2 Georgia, 'Times New Roman', serif; font-variant: small-caps; }
+.site-name span { color: var(--green); }
+#title p { margin: 3px 0 0; font: italic 13px/1.5 Georgia, 'Times New Roman', serif; }
+#title strong { font-weight: normal; }
+.site-layout { max-width: 1280px; margin: auto; }
+main { min-width: 0; padding: 16px 8px; }
+main:focus { outline: none; }
+#search-form { margin: 0 0 16px; }
+.search-line { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.search-line label { width: 130px; margin: 0; font-size: 14px; }
+.search-line input { width: 350px; max-width: 100%; min-width: 0; }
+.search-line button { white-space: nowrap; }
+#search-filters { margin-top: 8px; }
+#search-filters summary { width: fit-content; }
+.filter-row { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+.filter-row > label { flex: 0 0 130px; margin: 0; font-size: 14px; }
+.filter-row > input, .filter-row > select { width: 350px; min-width: 0; }
+.year-range { display: flex; align-items: center; gap: 6px; }
+.year-range input { width: 90px; }
+.year-range label { margin: 0; }
+.table-wrap { max-width: 100%; overflow-x: auto; }
+.record-table { width: 100%; border-collapse: collapse; }
+.record-table caption { margin-bottom: 8px; text-align: left; }
+.record-table th { padding: 6px 8px; border-bottom: 2px solid var(--olive); text-align: left; font-weight: bold; }
+.record-table th.numeric { text-align: right; }
+.record-table td { padding: 6px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
+.record-table td:first-child { min-width: 150px; }
+.record-table tbody tr:nth-child(even) { background: #f4f4f4; }
+.section-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; margin: 18px 0 10px; }
+.section-heading h2 { margin: 0; }
+.section-heading > a { font-size: 13px; }
+.text-button { padding: 0; border: 0; background: none; color: var(--link); }
+.text-button:hover { text-decoration: underline; }
+.count { color: var(--muted); font-size: 14px; }
+.count::before { content: '('; }
+.count::after { content: ')'; }
+.sort-label { display: flex; gap: 7px; align-items: center; margin: 0; font-size: 12px; }
+.sort-label select { min-height: 27px; padding: 3px 5px; font-size: 12px; }
+.results-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.results-heading p { margin: 0; font-size: 13px; }
+progress { width: 100%; height: 4px; margin-bottom: 10px; accent-color: var(--green); }
+.pagination { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; font-size: 13px; }
+.error-message { color: #8a341d; }
+.empty-results { margin: 18px 0; }
+.empty-results h2 { font-size: 18px; }
+.empty-results p { color: var(--muted); font-size: 13px; }
+.person-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.person-heading h1 { min-width: 0; overflow-wrap: anywhere; }
+.person-heading > a { white-space: nowrap; font-size: 13px; }
+.record-facts { display: grid; grid-template-columns: 105px minmax(0, 1fr); gap: 3px 6px; margin: 0 0 15px; }
+.record-facts dt { font-weight: normal; }
+.record-facts dt::after { content: ':'; }
+.record-facts dd { margin: 0; }
+.dissertation { margin-bottom: 18px; }
+.dissertation p { overflow-wrap: anywhere; }
+.advisor-list { margin: 0; padding-left: 20px; }
+.advisor-list li { margin-bottom: 5px; }
+.advisor-list li > span { margin-left: 10px; color: var(--muted); font-size: 13px; }
+#genealogy { margin-top: 18px; }
+#genealogy summary { color: var(--link); }
+.inline-controls { display: flex; gap: 8px; margin: 10px 0; }
+.inline-controls select { font-size: 13px; }
+.person-tree { overflow: auto; padding: 5px 0; }
+.person-tree > p { margin: 0; }
+.genealogy-levels { display: flex; align-items: flex-start; gap: 20px; min-width: min-content; }
+.genealogy-level { flex: 1; min-width: 160px; max-width: 260px; }
+.genealogy-level + .genealogy-level { padding-left: 12px; border-left: 1px solid var(--line); }
+.genealogy-level > h3 { margin: 0 0 8px; font-size: 12px; font-weight: normal; color: var(--muted); }
+.genealogy-card { display: block; margin-bottom: 10px; font-size: 14px; }
+.genealogy-card span, .genealogy-card small { display: block; font-size: 12px; color: var(--muted); font-weight: normal; }
+.genealogy-card.current { font-weight: bold; }
+.figure-caption { margin-top: 6px; font-size: 12px; }
+.year-chart { display: flex; align-items: flex-end; gap: 2px; height: 180px; padding-top: 10px; border-bottom: 1px solid #a7b69b; }
+.year-chart > a { display: block; position: relative; flex: 1; min-width: 1px; height: var(--bar-height); background: #88a17b; }
+.year-chart > a:hover, .year-chart > a:focus { background: var(--green); }
+.chart-tooltip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); padding: 3px 6px; background: var(--green); color: #fff; white-space: nowrap; font-size: 12px; z-index: 1; }
+.year-chart > a:hover .chart-tooltip, .year-chart > a:focus .chart-tooltip { display: block; }
+.chart-axis { display: flex; justify-content: space-between; margin-top: 5px; color: var(--muted); font-size: 12px; }
+.prose { max-width: 900px; }
+.provenance { font-size: 14px; }
+.provenance > div { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 10px; padding: 5px 0; }
+.provenance dt { font-weight: bold; }
+.provenance dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 840px) {
+  .original-link { display: none; }
+}
+@media (max-width: 650px) {
+  .site-name { font-size: 30px; }
+  .top-links { gap: 0 15px; }
+  main { padding: 14px 10px; }
+  h1 { font-size: 22px; }
+  .search-line label { width: 100%; }
+  .search-line input { flex: 1; width: auto; }
+  .filter-row > label { flex-basis: 85px; }
+  .filter-row > input, .filter-row > select { width: 100%; }
+  .record-table td:nth-child(2) { min-width: 160px; }
+  .person-heading { flex-wrap: wrap; margin-bottom: 10px; }
+  .person-heading h1 { margin-bottom: 0; }
+  .advisor-list li > span { display: block; margin-left: 0; }
+  .year-chart { gap: 1px; }
+  .provenance > div { grid-template-columns: 105px minmax(0, 1fr); }
+}
+@media print {
+  #menu, footer, .inline-controls, .skip-link { display: none; }
+  #title { border-bottom: 1px solid #aaa; background: #fff; }
+  .site-name { font-size: 26px; }
+  main { padding: 15px 0; }
+  a { color: #222; }
+  .record-table { font-size: 11px; }
+}
