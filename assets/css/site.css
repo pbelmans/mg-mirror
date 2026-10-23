@@ -60,6 +60,11 @@ main:focus { outline: none; }
 .record-table caption { margin-bottom: 8px; text-align: left; }
 .record-table th { padding: 6px 8px; border-bottom: 2px solid var(--olive); text-align: left; font-weight: bold; }
 .record-table th.numeric { text-align: right; }
+.column-sort { width: 100%; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: inherit; white-space: nowrap; }
+.column-sort:hover { text-decoration: underline; }
+.column-sort::after { content: ' ↕'; color: var(--muted); font-weight: normal; }
+th[aria-sort=ascending] .column-sort::after { content: ' ↑'; }
+th[aria-sort=descending] .column-sort::after { content: ' ↓'; }
 .record-table td { padding: 6px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
 .record-table td:first-child { min-width: 150px; }
 .record-table tbody tr:nth-child(even) { background: #f4f4f4; }

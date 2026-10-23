@@ -27,18 +27,52 @@ document.querySelectorAll(".random-record").forEach(button => button.addEventLis
   }
 }));
 
-const studentOrder = document.getElementById("student-order");
-if (studentOrder) {
-  const tbody = document.querySelector("#students-table tbody");
-  const sort = () => {
-    const rows = Array.from(tbody.rows);
-    const byName = (a, b) => a.cells[0].textContent.localeCompare(b.cells[0].textContent);
-    const year = row => Number(row.cells[2].textContent) || Infinity;
-    rows.sort((a, b) => studentOrder.value === "year" ? year(a) - year(b) || byName(a, b) : byName(a, b));
-    tbody.replaceChildren(...rows);
+const studentTable = document.getElementById("students-table");
+if (studentTable) {
+  const tbody = studentTable.tBodies[0];
+  const headers = Array.from(studentTable.tHead.rows[0].cells);
+  const labels = headers.map(header => header.textContent.trim());
+  const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
+  const byName = (a, b) => collator.compare(a.cells[0].textContent, b.cells[0].textContent);
+  let sortedColumn = -1;
+  let sortedDirection = 1;
+  const value = (row, column) => {
+    const text = row.cells[column].textContent.trim();
+    if (!text || ["—", "Not recorded", "Name not recorded"].includes(text)) return null;
+    if (!headers[column].classList.contains("numeric")) return text;
+    const number = Number(text.replaceAll(",", ""));
+    return Number.isFinite(number) ? number : null;
   };
-  studentOrder.addEventListener("change", sort);
-  sort();
+  const sort = (column, direction) => {
+    const rows = Array.from(tbody.rows);
+    rows.sort((a, b) => {
+      const left = value(a, column);
+      const right = value(b, column);
+      if (left === null) return right === null ? byName(a, b) : 1;
+      if (right === null) return -1;
+      const comparison = typeof left === "number" ? left - right : collator.compare(left, right);
+      return comparison * direction || byName(a, b);
+    });
+    tbody.replaceChildren(...rows);
+    sortedColumn = column;
+    sortedDirection = direction;
+    headers.forEach((header, index) => {
+      header.removeAttribute("aria-sort");
+      const nextDirection = index === column && direction === 1 ? "descending" : "ascending";
+      const action = `Sort by ${labels[index]}, ${nextDirection}`;
+      buttons[index].setAttribute("aria-label", action);
+      buttons[index].title = action;
+    });
+    headers[column].setAttribute("aria-sort", direction === 1 ? "ascending" : "descending");
+  };
+  const buttons = headers.map((header, column) => {
+    const button = node("button", labels[column], "column-sort");
+    button.type = "button";
+    button.addEventListener("click", () => sort(column, column === sortedColumn ? -sortedDirection : 1));
+    header.replaceChildren(button);
+    return button;
+  });
+  sort(0, 1);
 }
 
 const searchForm = document.getElementById("search-form");
