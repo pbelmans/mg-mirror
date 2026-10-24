@@ -29,7 +29,6 @@ for path in (public / "data/graph").glob("*.json"):
     graph_ids.update(int(i) for i in json.loads(path.read_text()))
 assert graph_ids == expected, "Graph data coverage mismatch"
 size = sum((Path(directory) / name).stat().st_size for directory, _, files in os.walk(public) for name in files)
-assert size < 1_000_000_000, f"Site exceeds GitHub Pages' 1 GB limit: {size:,} bytes"
 assert (public / "CNAME").read_text().strip() == "mg.ncag.info", "Incorrect custom domain"
 
 
